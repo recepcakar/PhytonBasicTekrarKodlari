@@ -46,3 +46,54 @@ if(responseForPassenger.status_code==200):
     else:
         print("Transcript boş veya kapalı")
 # eminem şarkıyı ne kadar hızlı söyler?
+
+
+
+
+#passenger [Music] ve [applause] yazan satırları çıkarıcaz
+#Toplam harf sayısını süreye bölücez
+#çıkan harf/saniye oranı ile emineminkini kıyaslıocağız
+
+
+
+
+
+
+dfForPassengerReal=dfForPassenger.loc[dfForPassenger["text"]!="[Music]"]
+dfForPassengerReal=dfForPassengerReal.loc[dfForPassengerReal["text"]!="[Applause]"]
+
+
+duration_passenger=dfForPassengerReal.duration.sum() #passenger konuşma süresi
+duration_eminem=dfForEminem.duration.sum()  #eminem konuşma süresi
+
+
+#passenger kaç harf var ?
+total_passenger=0
+for i in dfForPassengerReal["text"].dropna():
+    total_passenger+=len(i)
+
+
+total_eminem=0
+for i in dfForEminem["text"].dropna():
+    total_eminem+=len(i)
+
+
+
+
+
+
+ratio_eminem=total_eminem/duration_eminem
+ratio_passenger=total_passenger/duration_passenger
+
+
+
+yazılacak_yazı="passenger" if ratio_passenger>ratio_eminem else     "Eminem"
+
+print(yazılacak_yazı,"çok daha hızlı konuşuyor ")
+
+
+
+
+
+
+
